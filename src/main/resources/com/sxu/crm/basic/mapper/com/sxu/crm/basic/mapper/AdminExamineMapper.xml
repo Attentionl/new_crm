@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxu.crm.basic.mapper.AdminExamineMapper">
+  <resultMap id="BaseResultMap" type="com.sxu.crm.basic.domain.AdminExamine">
+    <!--@mbg.generated-->
+    <!--@Table admin_examine-->
+    <id column="examine_id" jdbcType="INTEGER" property="examineId" />
+    <result column="category_type" jdbcType="INTEGER" property="categoryType" />
+    <result column="examine_type" jdbcType="INTEGER" property="examineType" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="dept_ids" jdbcType="VARCHAR" property="deptIds" />
+    <result column="user_ids" jdbcType="VARCHAR" property="userIds" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user_id" jdbcType="BIGINT" property="updateUserId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    examine_id, category_type, examine_type, `name`, dept_ids, user_ids, create_time, 
+    create_user_id, update_time, update_user_id, `status`, remarks
+  </sql>
+  <select id="selectByExample" parameterType="com.sxu.crm.basic.domain.AdminExamineExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from admin_examine
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from admin_examine
+    where examine_id = #{examineId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from admin_examine
+    where examine_id = #{examineId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sxu.crm.basic.domain.AdminExamineExample">
+    <!--@mbg.generated-->
+    delete from admin_examine
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="examine_id" keyProperty="examineId" parameterType="com.sxu.crm.basic.domain.AdminExamine" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into admin_examine (category_type, examine_type, `name`, 
+      dept_ids, user_ids, create_time, 
+      create_user_id, update_time, update_user_id, 
+      `status`, remarks)
+    values (#{categoryType,jdbcType=INTEGER}, #{examineType,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{deptIds,jdbcType=VARCHAR}, #{userIds,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createUserId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=BIGINT}, 
+      #{status,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="examine_id" keyProperty="examineId" parameterType="com.sxu.crm.basic.domain.AdminExamine" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into admin_examine
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="categoryType != null">
+        category_type,
+      </if>
+      <if test="examineType != null">
+        examine_type,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="deptIds != null">
+        dept_ids,
+      </if>
+      <if test="userIds != null">
+        user_ids,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="categoryType != null">
+        #{categoryType,jdbcType=INTEGER},
+      </if>
+      <if test="examineType != null">
+        #{examineType,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="deptIds != null">
+        #{deptIds,jdbcType=VARCHAR},
+      </if>
+      <if test="userIds != null">
+        #{userIds,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sxu.crm.basic.domain.AdminExamineExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from admin_examine
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update admin_examine
+    <set>
+      <if test="record.examineId != null">
+        examine_id = #{record.examineId,jdbcType=INTEGER},
+      </if>
+      <if test="record.categoryType != null">
+        category_type = #{record.categoryType,jdbcType=INTEGER},
+      </if>
+      <if test="record.examineType != null">
+        examine_type = #{record.examineType,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        `name` = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptIds != null">
+        dept_ids = #{record.deptIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userIds != null">
+        user_ids = #{record.userIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUserId != null">
+        create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateUserId != null">
+        update_user_id = #{record.updateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.status != null">
+        `status` = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.remarks != null">
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update admin_examine
+    set examine_id = #{record.examineId,jdbcType=INTEGER},
+      category_type = #{record.categoryType,jdbcType=INTEGER},
+      examine_type = #{record.examineType,jdbcType=INTEGER},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      dept_ids = #{record.deptIds,jdbcType=VARCHAR},
+      user_ids = #{record.userIds,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_user_id = #{record.updateUserId,jdbcType=BIGINT},
+      `status` = #{record.status,jdbcType=INTEGER},
+      remarks = #{record.remarks,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sxu.crm.basic.domain.AdminExamine">
+    <!--@mbg.generated-->
+    update admin_examine
+    <set>
+      <if test="categoryType != null">
+        category_type = #{categoryType,jdbcType=INTEGER},
+      </if>
+      <if test="examineType != null">
+        examine_type = #{examineType,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="deptIds != null">
+        dept_ids = #{deptIds,jdbcType=VARCHAR},
+      </if>
+      <if test="userIds != null">
+        user_ids = #{userIds,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where examine_id = #{examineId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sxu.crm.basic.domain.AdminExamine">
+    <!--@mbg.generated-->
+    update admin_examine
+    set category_type = #{categoryType,jdbcType=INTEGER},
+      examine_type = #{examineType,jdbcType=INTEGER},
+      `name` = #{name,jdbcType=VARCHAR},
+      dept_ids = #{deptIds,jdbcType=VARCHAR},
+      user_ids = #{userIds,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=BIGINT},
+      `status` = #{status,jdbcType=INTEGER},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where examine_id = #{examineId,jdbcType=INTEGER}
+  </update>
+</mapper>

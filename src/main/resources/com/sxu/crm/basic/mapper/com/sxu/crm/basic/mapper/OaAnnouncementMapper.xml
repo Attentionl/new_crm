@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxu.crm.basic.mapper.OaAnnouncementMapper">
+  <resultMap id="BaseResultMap" type="com.sxu.crm.basic.domain.OaAnnouncement">
+    <!--@mbg.generated-->
+    <!--@Table oa_announcement-->
+    <id column="announcement_id" jdbcType="INTEGER" property="announcementId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="dept_ids" jdbcType="VARCHAR" property="deptIds" />
+    <result column="owner_user_ids" jdbcType="VARCHAR" property="ownerUserIds" />
+    <result column="read_user_ids" jdbcType="VARCHAR" property="readUserIds" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    announcement_id, title, content, create_user_id, create_time, update_time, start_time, 
+    end_time, dept_ids, owner_user_ids, read_user_ids
+  </sql>
+  <select id="selectByExample" parameterType="com.sxu.crm.basic.domain.OaAnnouncementExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from oa_announcement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from oa_announcement
+    where announcement_id = #{announcementId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from oa_announcement
+    where announcement_id = #{announcementId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sxu.crm.basic.domain.OaAnnouncementExample">
+    <!--@mbg.generated-->
+    delete from oa_announcement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="announcement_id" keyProperty="announcementId" parameterType="com.sxu.crm.basic.domain.OaAnnouncement" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into oa_announcement (title, content, create_user_id, 
+      create_time, update_time, start_time, 
+      end_time, dept_ids, owner_user_ids, 
+      read_user_ids)
+    values (#{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{createUserId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{deptIds,jdbcType=VARCHAR}, #{ownerUserIds,jdbcType=VARCHAR}, 
+      #{readUserIds,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="announcement_id" keyProperty="announcementId" parameterType="com.sxu.crm.basic.domain.OaAnnouncement" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into oa_announcement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="deptIds != null">
+        dept_ids,
+      </if>
+      <if test="ownerUserIds != null">
+        owner_user_ids,
+      </if>
+      <if test="readUserIds != null">
+        read_user_ids,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deptIds != null">
+        #{deptIds,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerUserIds != null">
+        #{ownerUserIds,jdbcType=VARCHAR},
+      </if>
+      <if test="readUserIds != null">
+        #{readUserIds,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sxu.crm.basic.domain.OaAnnouncementExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from oa_announcement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update oa_announcement
+    <set>
+      <if test="record.announcementId != null">
+        announcement_id = #{record.announcementId,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserId != null">
+        create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.startTime != null">
+        start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null">
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deptIds != null">
+        dept_ids = #{record.deptIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ownerUserIds != null">
+        owner_user_ids = #{record.ownerUserIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.readUserIds != null">
+        read_user_ids = #{record.readUserIds,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update oa_announcement
+    set announcement_id = #{record.announcementId,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      dept_ids = #{record.deptIds,jdbcType=VARCHAR},
+      owner_user_ids = #{record.ownerUserIds,jdbcType=VARCHAR},
+      read_user_ids = #{record.readUserIds,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sxu.crm.basic.domain.OaAnnouncement">
+    <!--@mbg.generated-->
+    update oa_announcement
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deptIds != null">
+        dept_ids = #{deptIds,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerUserIds != null">
+        owner_user_ids = #{ownerUserIds,jdbcType=VARCHAR},
+      </if>
+      <if test="readUserIds != null">
+        read_user_ids = #{readUserIds,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where announcement_id = #{announcementId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sxu.crm.basic.domain.OaAnnouncement">
+    <!--@mbg.generated-->
+    update oa_announcement
+    set title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      dept_ids = #{deptIds,jdbcType=VARCHAR},
+      owner_user_ids = #{ownerUserIds,jdbcType=VARCHAR},
+      read_user_ids = #{readUserIds,jdbcType=VARCHAR}
+    where announcement_id = #{announcementId,jdbcType=INTEGER}
+  </update>
+</mapper>

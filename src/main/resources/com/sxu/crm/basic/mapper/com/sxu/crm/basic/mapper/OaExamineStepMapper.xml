@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxu.crm.basic.mapper.OaExamineStepMapper">
+  <resultMap id="BaseResultMap" type="com.sxu.crm.basic.domain.OaExamineStep">
+    <!--@mbg.generated-->
+    <!--@Table oa_examine_step-->
+    <id column="step_id" jdbcType="INTEGER" property="stepId" />
+    <result column="step_type" jdbcType="INTEGER" property="stepType" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="check_user_id" jdbcType="VARCHAR" property="checkUserId" />
+    <result column="step_num" jdbcType="INTEGER" property="stepNum" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    step_id, step_type, category_id, check_user_id, step_num, create_time
+  </sql>
+  <select id="selectByExample" parameterType="com.sxu.crm.basic.domain.OaExamineStepExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from oa_examine_step
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from oa_examine_step
+    where step_id = #{stepId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from oa_examine_step
+    where step_id = #{stepId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sxu.crm.basic.domain.OaExamineStepExample">
+    <!--@mbg.generated-->
+    delete from oa_examine_step
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="step_id" keyProperty="stepId" parameterType="com.sxu.crm.basic.domain.OaExamineStep" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into oa_examine_step (step_type, category_id, check_user_id, 
+      step_num, create_time)
+    values (#{stepType,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{checkUserId,jdbcType=VARCHAR}, 
+      #{stepNum,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="step_id" keyProperty="stepId" parameterType="com.sxu.crm.basic.domain.OaExamineStep" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into oa_examine_step
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="stepType != null">
+        step_type,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="checkUserId != null">
+        check_user_id,
+      </if>
+      <if test="stepNum != null">
+        step_num,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="stepType != null">
+        #{stepType,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="checkUserId != null">
+        #{checkUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="stepNum != null">
+        #{stepNum,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sxu.crm.basic.domain.OaExamineStepExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from oa_examine_step
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update oa_examine_step
+    <set>
+      <if test="record.stepId != null">
+        step_id = #{record.stepId,jdbcType=INTEGER},
+      </if>
+      <if test="record.stepType != null">
+        step_type = #{record.stepType,jdbcType=INTEGER},
+      </if>
+      <if test="record.categoryId != null">
+        category_id = #{record.categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.checkUserId != null">
+        check_user_id = #{record.checkUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stepNum != null">
+        step_num = #{record.stepNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update oa_examine_step
+    set step_id = #{record.stepId,jdbcType=INTEGER},
+      step_type = #{record.stepType,jdbcType=INTEGER},
+      category_id = #{record.categoryId,jdbcType=INTEGER},
+      check_user_id = #{record.checkUserId,jdbcType=VARCHAR},
+      step_num = #{record.stepNum,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sxu.crm.basic.domain.OaExamineStep">
+    <!--@mbg.generated-->
+    update oa_examine_step
+    <set>
+      <if test="stepType != null">
+        step_type = #{stepType,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="checkUserId != null">
+        check_user_id = #{checkUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="stepNum != null">
+        step_num = #{stepNum,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where step_id = #{stepId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sxu.crm.basic.domain.OaExamineStep">
+    <!--@mbg.generated-->
+    update oa_examine_step
+    set step_type = #{stepType,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      check_user_id = #{checkUserId,jdbcType=VARCHAR},
+      step_num = #{stepNum,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where step_id = #{stepId,jdbcType=INTEGER}
+  </update>
+</mapper>

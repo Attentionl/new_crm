@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxu.crm.basic.mapper.TaskMapper">
+  <resultMap id="BaseResultMap" type="com.sxu.crm.basic.domain.Task">
+    <!--@mbg.generated-->
+    <!--@Table task-->
+    <id column="task_id" jdbcType="INTEGER" property="taskId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="main_user_id" jdbcType="BIGINT" property="mainUserId" />
+    <result column="owner_user_id" jdbcType="VARCHAR" property="ownerUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="class_id" jdbcType="INTEGER" property="classId" />
+    <result column="label_id" jdbcType="VARCHAR" property="labelId" />
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="stop_time" jdbcType="TIMESTAMP" property="stopTime" />
+    <result column="priority" jdbcType="INTEGER" property="priority" />
+    <result column="work_id" jdbcType="INTEGER" property="workId" />
+    <result column="is_top" jdbcType="INTEGER" property="isTop" />
+    <result column="is_open" jdbcType="INTEGER" property="isOpen" />
+    <result column="order_num" jdbcType="INTEGER" property="orderNum" />
+    <result column="top_order_num" jdbcType="INTEGER" property="topOrderNum" />
+    <result column="archive_time" jdbcType="TIMESTAMP" property="archiveTime" />
+    <result column="ishidden" jdbcType="INTEGER" property="ishidden" />
+    <result column="hidden_time" jdbcType="TIMESTAMP" property="hiddenTime" />
+    <result column="batch_id" jdbcType="VARCHAR" property="batchId" />
+    <result column="is_archive" jdbcType="INTEGER" property="isArchive" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    task_id, `name`, create_user_id, main_user_id, owner_user_id, create_time, update_time, 
+    `status`, class_id, label_id, description, pid, start_time, stop_time, priority, 
+    work_id, is_top, is_open, order_num, top_order_num, archive_time, ishidden, hidden_time, 
+    batch_id, is_archive
+  </sql>
+  <select id="selectByExample" parameterType="com.sxu.crm.basic.domain.TaskExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from task
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from task
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from task
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sxu.crm.basic.domain.TaskExample">
+    <!--@mbg.generated-->
+    delete from task
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="task_id" keyProperty="taskId" parameterType="com.sxu.crm.basic.domain.Task" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into task (`name`, create_user_id, main_user_id, 
+      owner_user_id, create_time, update_time, 
+      `status`, class_id, label_id, 
+      description, pid, start_time, 
+      stop_time, priority, work_id, 
+      is_top, is_open, order_num, 
+      top_order_num, archive_time, ishidden, 
+      hidden_time, batch_id, is_archive
+      )
+    values (#{name,jdbcType=VARCHAR}, #{createUserId,jdbcType=BIGINT}, #{mainUserId,jdbcType=BIGINT}, 
+      #{ownerUserId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}, #{labelId,jdbcType=VARCHAR}, 
+      #{description,jdbcType=LONGVARCHAR}, #{pid,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{stopTime,jdbcType=TIMESTAMP}, #{priority,jdbcType=INTEGER}, #{workId,jdbcType=INTEGER}, 
+      #{isTop,jdbcType=INTEGER}, #{isOpen,jdbcType=INTEGER}, #{orderNum,jdbcType=INTEGER}, 
+      #{topOrderNum,jdbcType=INTEGER}, #{archiveTime,jdbcType=TIMESTAMP}, #{ishidden,jdbcType=INTEGER}, 
+      #{hiddenTime,jdbcType=TIMESTAMP}, #{batchId,jdbcType=VARCHAR}, #{isArchive,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="task_id" keyProperty="taskId" parameterType="com.sxu.crm.basic.domain.Task" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="mainUserId != null">
+        main_user_id,
+      </if>
+      <if test="ownerUserId != null">
+        owner_user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="classId != null">
+        class_id,
+      </if>
+      <if test="labelId != null">
+        label_id,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="stopTime != null">
+        stop_time,
+      </if>
+      <if test="priority != null">
+        priority,
+      </if>
+      <if test="workId != null">
+        work_id,
+      </if>
+      <if test="isTop != null">
+        is_top,
+      </if>
+      <if test="isOpen != null">
+        is_open,
+      </if>
+      <if test="orderNum != null">
+        order_num,
+      </if>
+      <if test="topOrderNum != null">
+        top_order_num,
+      </if>
+      <if test="archiveTime != null">
+        archive_time,
+      </if>
+      <if test="ishidden != null">
+        ishidden,
+      </if>
+      <if test="hiddenTime != null">
+        hidden_time,
+      </if>
+      <if test="batchId != null">
+        batch_id,
+      </if>
+      <if test="isArchive != null">
+        is_archive,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="mainUserId != null">
+        #{mainUserId,jdbcType=BIGINT},
+      </if>
+      <if test="ownerUserId != null">
+        #{ownerUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null">
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="labelId != null">
+        #{labelId,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopTime != null">
+        #{stopTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="priority != null">
+        #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="workId != null">
+        #{workId,jdbcType=INTEGER},
+      </if>
+      <if test="isTop != null">
+        #{isTop,jdbcType=INTEGER},
+      </if>
+      <if test="isOpen != null">
+        #{isOpen,jdbcType=INTEGER},
+      </if>
+      <if test="orderNum != null">
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="topOrderNum != null">
+        #{topOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="archiveTime != null">
+        #{archiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ishidden != null">
+        #{ishidden,jdbcType=INTEGER},
+      </if>
+      <if test="hiddenTime != null">
+        #{hiddenTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="batchId != null">
+        #{batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="isArchive != null">
+        #{isArchive,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sxu.crm.basic.domain.TaskExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from task
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update task
+    <set>
+      <if test="record.taskId != null">
+        task_id = #{record.taskId,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        `name` = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserId != null">
+        create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.mainUserId != null">
+        main_user_id = #{record.mainUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.ownerUserId != null">
+        owner_user_id = #{record.ownerUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null">
+        `status` = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.classId != null">
+        class_id = #{record.classId,jdbcType=INTEGER},
+      </if>
+      <if test="record.labelId != null">
+        label_id = #{record.labelId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.pid != null">
+        pid = #{record.pid,jdbcType=INTEGER},
+      </if>
+      <if test="record.startTime != null">
+        start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.stopTime != null">
+        stop_time = #{record.stopTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.priority != null">
+        priority = #{record.priority,jdbcType=INTEGER},
+      </if>
+      <if test="record.workId != null">
+        work_id = #{record.workId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isTop != null">
+        is_top = #{record.isTop,jdbcType=INTEGER},
+      </if>
+      <if test="record.isOpen != null">
+        is_open = #{record.isOpen,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderNum != null">
+        order_num = #{record.orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.topOrderNum != null">
+        top_order_num = #{record.topOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.archiveTime != null">
+        archive_time = #{record.archiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ishidden != null">
+        ishidden = #{record.ishidden,jdbcType=INTEGER},
+      </if>
+      <if test="record.hiddenTime != null">
+        hidden_time = #{record.hiddenTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.batchId != null">
+        batch_id = #{record.batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isArchive != null">
+        is_archive = #{record.isArchive,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update task
+    set task_id = #{record.taskId,jdbcType=INTEGER},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      main_user_id = #{record.mainUserId,jdbcType=BIGINT},
+      owner_user_id = #{record.ownerUserId,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      `status` = #{record.status,jdbcType=INTEGER},
+      class_id = #{record.classId,jdbcType=INTEGER},
+      label_id = #{record.labelId,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=LONGVARCHAR},
+      pid = #{record.pid,jdbcType=INTEGER},
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      stop_time = #{record.stopTime,jdbcType=TIMESTAMP},
+      priority = #{record.priority,jdbcType=INTEGER},
+      work_id = #{record.workId,jdbcType=INTEGER},
+      is_top = #{record.isTop,jdbcType=INTEGER},
+      is_open = #{record.isOpen,jdbcType=INTEGER},
+      order_num = #{record.orderNum,jdbcType=INTEGER},
+      top_order_num = #{record.topOrderNum,jdbcType=INTEGER},
+      archive_time = #{record.archiveTime,jdbcType=TIMESTAMP},
+      ishidden = #{record.ishidden,jdbcType=INTEGER},
+      hidden_time = #{record.hiddenTime,jdbcType=TIMESTAMP},
+      batch_id = #{record.batchId,jdbcType=VARCHAR},
+      is_archive = #{record.isArchive,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sxu.crm.basic.domain.Task">
+    <!--@mbg.generated-->
+    update task
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="mainUserId != null">
+        main_user_id = #{mainUserId,jdbcType=BIGINT},
+      </if>
+      <if test="ownerUserId != null">
+        owner_user_id = #{ownerUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null">
+        class_id = #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="labelId != null">
+        label_id = #{labelId,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stopTime != null">
+        stop_time = #{stopTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="priority != null">
+        priority = #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="workId != null">
+        work_id = #{workId,jdbcType=INTEGER},
+      </if>
+      <if test="isTop != null">
+        is_top = #{isTop,jdbcType=INTEGER},
+      </if>
+      <if test="isOpen != null">
+        is_open = #{isOpen,jdbcType=INTEGER},
+      </if>
+      <if test="orderNum != null">
+        order_num = #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="topOrderNum != null">
+        top_order_num = #{topOrderNum,jdbcType=INTEGER},
+      </if>
+      <if test="archiveTime != null">
+        archive_time = #{archiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ishidden != null">
+        ishidden = #{ishidden,jdbcType=INTEGER},
+      </if>
+      <if test="hiddenTime != null">
+        hidden_time = #{hiddenTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="batchId != null">
+        batch_id = #{batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="isArchive != null">
+        is_archive = #{isArchive,jdbcType=INTEGER},
+      </if>
+    </set>
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sxu.crm.basic.domain.Task">
+    <!--@mbg.generated-->
+    update task
+    set `name` = #{name,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      main_user_id = #{mainUserId,jdbcType=BIGINT},
+      owner_user_id = #{ownerUserId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      `status` = #{status,jdbcType=INTEGER},
+      class_id = #{classId,jdbcType=INTEGER},
+      label_id = #{labelId,jdbcType=VARCHAR},
+      description = #{description,jdbcType=LONGVARCHAR},
+      pid = #{pid,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      stop_time = #{stopTime,jdbcType=TIMESTAMP},
+      priority = #{priority,jdbcType=INTEGER},
+      work_id = #{workId,jdbcType=INTEGER},
+      is_top = #{isTop,jdbcType=INTEGER},
+      is_open = #{isOpen,jdbcType=INTEGER},
+      order_num = #{orderNum,jdbcType=INTEGER},
+      top_order_num = #{topOrderNum,jdbcType=INTEGER},
+      archive_time = #{archiveTime,jdbcType=TIMESTAMP},
+      ishidden = #{ishidden,jdbcType=INTEGER},
+      hidden_time = #{hiddenTime,jdbcType=TIMESTAMP},
+      batch_id = #{batchId,jdbcType=VARCHAR},
+      is_archive = #{isArchive,jdbcType=INTEGER}
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxu.crm.basic.mapper.AdminRoleMapper">
+  <resultMap id="BaseResultMap" type="com.sxu.crm.basic.domain.AdminRole">
+    <!--@mbg.generated-->
+    <!--@Table admin_role-->
+    <id column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="role_type" jdbcType="INTEGER" property="roleType" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="data_type" jdbcType="INTEGER" property="dataType" />
+    <result column="is_hidden" jdbcType="INTEGER" property="isHidden" />
+    <result column="label" jdbcType="INTEGER" property="label" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    role_id, role_name, role_type, remark, `status`, data_type, is_hidden, `label`
+  </sql>
+  <select id="selectByExample" parameterType="com.sxu.crm.basic.domain.AdminRoleExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from admin_role
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from admin_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from admin_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sxu.crm.basic.domain.AdminRoleExample">
+    <!--@mbg.generated-->
+    delete from admin_role
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="role_id" keyProperty="roleId" parameterType="com.sxu.crm.basic.domain.AdminRole" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into admin_role (role_name, role_type, remark, 
+      `status`, data_type, is_hidden, 
+      `label`)
+    values (#{roleName,jdbcType=VARCHAR}, #{roleType,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{dataType,jdbcType=INTEGER}, #{isHidden,jdbcType=INTEGER}, 
+      #{label,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="role_id" keyProperty="roleId" parameterType="com.sxu.crm.basic.domain.AdminRole" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into admin_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="roleType != null">
+        role_type,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="dataType != null">
+        data_type,
+      </if>
+      <if test="isHidden != null">
+        is_hidden,
+      </if>
+      <if test="label != null">
+        `label`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleType != null">
+        #{roleType,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="dataType != null">
+        #{dataType,jdbcType=INTEGER},
+      </if>
+      <if test="isHidden != null">
+        #{isHidden,jdbcType=INTEGER},
+      </if>
+      <if test="label != null">
+        #{label,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sxu.crm.basic.domain.AdminRoleExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from admin_role
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update admin_role
+    <set>
+      <if test="record.roleId != null">
+        role_id = #{record.roleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.roleName != null">
+        role_name = #{record.roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleType != null">
+        role_type = #{record.roleType,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        `status` = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.dataType != null">
+        data_type = #{record.dataType,jdbcType=INTEGER},
+      </if>
+      <if test="record.isHidden != null">
+        is_hidden = #{record.isHidden,jdbcType=INTEGER},
+      </if>
+      <if test="record.label != null">
+        `label` = #{record.label,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update admin_role
+    set role_id = #{record.roleId,jdbcType=INTEGER},
+      role_name = #{record.roleName,jdbcType=VARCHAR},
+      role_type = #{record.roleType,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      `status` = #{record.status,jdbcType=INTEGER},
+      data_type = #{record.dataType,jdbcType=INTEGER},
+      is_hidden = #{record.isHidden,jdbcType=INTEGER},
+      `label` = #{record.label,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sxu.crm.basic.domain.AdminRole">
+    <!--@mbg.generated-->
+    update admin_role
+    <set>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleType != null">
+        role_type = #{roleType,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="dataType != null">
+        data_type = #{dataType,jdbcType=INTEGER},
+      </if>
+      <if test="isHidden != null">
+        is_hidden = #{isHidden,jdbcType=INTEGER},
+      </if>
+      <if test="label != null">
+        `label` = #{label,jdbcType=INTEGER},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sxu.crm.basic.domain.AdminRole">
+    <!--@mbg.generated-->
+    update admin_role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      role_type = #{roleType,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      data_type = #{dataType,jdbcType=INTEGER},
+      is_hidden = #{isHidden,jdbcType=INTEGER},
+      `label` = #{label,jdbcType=INTEGER}
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+</mapper>

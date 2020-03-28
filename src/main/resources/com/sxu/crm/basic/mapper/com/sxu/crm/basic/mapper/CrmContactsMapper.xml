@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxu.crm.basic.mapper.CrmContactsMapper">
+  <resultMap id="BaseResultMap" type="com.sxu.crm.basic.domain.CrmContacts">
+    <!--@mbg.generated-->
+    <!--@Table crm_contacts-->
+    <id column="contacts_id" jdbcType="INTEGER" property="contactsId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="next_time" jdbcType="TIMESTAMP" property="nextTime" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="post" jdbcType="VARCHAR" property="post" />
+    <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="owner_user_id" jdbcType="BIGINT" property="ownerUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="batch_id" jdbcType="VARCHAR" property="batchId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    contacts_id, `name`, next_time, mobile, telephone, email, post, customer_id, address, 
+    remark, create_user_id, owner_user_id, create_time, update_time, batch_id
+  </sql>
+  <select id="selectByExample" parameterType="com.sxu.crm.basic.domain.CrmContactsExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from crm_contacts
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from crm_contacts
+    where contacts_id = #{contactsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from crm_contacts
+    where contacts_id = #{contactsId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sxu.crm.basic.domain.CrmContactsExample">
+    <!--@mbg.generated-->
+    delete from crm_contacts
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="contacts_id" keyProperty="contactsId" parameterType="com.sxu.crm.basic.domain.CrmContacts" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into crm_contacts (`name`, next_time, mobile, 
+      telephone, email, post, 
+      customer_id, address, remark, 
+      create_user_id, owner_user_id, create_time, 
+      update_time, batch_id)
+    values (#{name,jdbcType=VARCHAR}, #{nextTime,jdbcType=TIMESTAMP}, #{mobile,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{post,jdbcType=VARCHAR}, 
+      #{customerId,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createUserId,jdbcType=BIGINT}, #{ownerUserId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{batchId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="contacts_id" keyProperty="contactsId" parameterType="com.sxu.crm.basic.domain.CrmContacts" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into crm_contacts
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="nextTime != null">
+        next_time,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="post != null">
+        post,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="ownerUserId != null">
+        owner_user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="batchId != null">
+        batch_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nextTime != null">
+        #{nextTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null">
+        #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="ownerUserId != null">
+        #{ownerUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="batchId != null">
+        #{batchId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sxu.crm.basic.domain.CrmContactsExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from crm_contacts
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update crm_contacts
+    <set>
+      <if test="record.contactsId != null">
+        contacts_id = #{record.contactsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        `name` = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nextTime != null">
+        next_time = #{record.nextTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mobile != null">
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telephone != null">
+        telephone = #{record.telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.post != null">
+        post = #{record.post,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerId != null">
+        customer_id = #{record.customerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserId != null">
+        create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.ownerUserId != null">
+        owner_user_id = #{record.ownerUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.batchId != null">
+        batch_id = #{record.batchId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update crm_contacts
+    set contacts_id = #{record.contactsId,jdbcType=INTEGER},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      next_time = #{record.nextTime,jdbcType=TIMESTAMP},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      telephone = #{record.telephone,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      post = #{record.post,jdbcType=VARCHAR},
+      customer_id = #{record.customerId,jdbcType=INTEGER},
+      address = #{record.address,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      owner_user_id = #{record.ownerUserId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      batch_id = #{record.batchId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sxu.crm.basic.domain.CrmContacts">
+    <!--@mbg.generated-->
+    update crm_contacts
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nextTime != null">
+        next_time = #{nextTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null">
+        post = #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="ownerUserId != null">
+        owner_user_id = #{ownerUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="batchId != null">
+        batch_id = #{batchId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where contacts_id = #{contactsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sxu.crm.basic.domain.CrmContacts">
+    <!--@mbg.generated-->
+    update crm_contacts
+    set `name` = #{name,jdbcType=VARCHAR},
+      next_time = #{nextTime,jdbcType=TIMESTAMP},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      post = #{post,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      owner_user_id = #{ownerUserId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      batch_id = #{batchId,jdbcType=VARCHAR}
+    where contacts_id = #{contactsId,jdbcType=INTEGER}
+  </update>
+</mapper>

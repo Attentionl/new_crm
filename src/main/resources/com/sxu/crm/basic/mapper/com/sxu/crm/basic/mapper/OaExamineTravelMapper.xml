@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxu.crm.basic.mapper.OaExamineTravelMapper">
+  <resultMap id="BaseResultMap" type="com.sxu.crm.basic.domain.OaExamineTravel">
+    <!--@mbg.generated-->
+    <!--@Table oa_examine_travel-->
+    <id column="travel_id" jdbcType="INTEGER" property="travelId" />
+    <result column="examine_id" jdbcType="INTEGER" property="examineId" />
+    <result column="start_address" jdbcType="VARCHAR" property="startAddress" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_address" jdbcType="VARCHAR" property="endAddress" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="traffic" jdbcType="DECIMAL" property="traffic" />
+    <result column="stay" jdbcType="DECIMAL" property="stay" />
+    <result column="diet" jdbcType="DECIMAL" property="diet" />
+    <result column="other" jdbcType="DECIMAL" property="other" />
+    <result column="money" jdbcType="DECIMAL" property="money" />
+    <result column="vehicle" jdbcType="VARCHAR" property="vehicle" />
+    <result column="trip" jdbcType="VARCHAR" property="trip" />
+    <result column="duration" jdbcType="DECIMAL" property="duration" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="batch_id" jdbcType="VARCHAR" property="batchId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    travel_id, examine_id, start_address, start_time, end_address, end_time, traffic, 
+    `stay`, diet, other, money, vehicle, trip, duration, description, batch_id
+  </sql>
+  <select id="selectByExample" parameterType="com.sxu.crm.basic.domain.OaExamineTravelExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from oa_examine_travel
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from oa_examine_travel
+    where travel_id = #{travelId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from oa_examine_travel
+    where travel_id = #{travelId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sxu.crm.basic.domain.OaExamineTravelExample">
+    <!--@mbg.generated-->
+    delete from oa_examine_travel
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="travel_id" keyProperty="travelId" parameterType="com.sxu.crm.basic.domain.OaExamineTravel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into oa_examine_travel (examine_id, start_address, start_time, 
+      end_address, end_time, traffic, 
+      `stay`, diet, other, 
+      money, vehicle, trip, 
+      duration, description, batch_id
+      )
+    values (#{examineId,jdbcType=INTEGER}, #{startAddress,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endAddress,jdbcType=VARCHAR}, #{endTime,jdbcType=TIMESTAMP}, #{traffic,jdbcType=DECIMAL}, 
+      #{stay,jdbcType=DECIMAL}, #{diet,jdbcType=DECIMAL}, #{other,jdbcType=DECIMAL}, 
+      #{money,jdbcType=DECIMAL}, #{vehicle,jdbcType=VARCHAR}, #{trip,jdbcType=VARCHAR}, 
+      #{duration,jdbcType=DECIMAL}, #{description,jdbcType=VARCHAR}, #{batchId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="travel_id" keyProperty="travelId" parameterType="com.sxu.crm.basic.domain.OaExamineTravel" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into oa_examine_travel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="examineId != null">
+        examine_id,
+      </if>
+      <if test="startAddress != null">
+        start_address,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endAddress != null">
+        end_address,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="traffic != null">
+        traffic,
+      </if>
+      <if test="stay != null">
+        `stay`,
+      </if>
+      <if test="diet != null">
+        diet,
+      </if>
+      <if test="other != null">
+        other,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="vehicle != null">
+        vehicle,
+      </if>
+      <if test="trip != null">
+        trip,
+      </if>
+      <if test="duration != null">
+        duration,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="batchId != null">
+        batch_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="examineId != null">
+        #{examineId,jdbcType=INTEGER},
+      </if>
+      <if test="startAddress != null">
+        #{startAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endAddress != null">
+        #{endAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="traffic != null">
+        #{traffic,jdbcType=DECIMAL},
+      </if>
+      <if test="stay != null">
+        #{stay,jdbcType=DECIMAL},
+      </if>
+      <if test="diet != null">
+        #{diet,jdbcType=DECIMAL},
+      </if>
+      <if test="other != null">
+        #{other,jdbcType=DECIMAL},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="vehicle != null">
+        #{vehicle,jdbcType=VARCHAR},
+      </if>
+      <if test="trip != null">
+        #{trip,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null">
+        #{duration,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="batchId != null">
+        #{batchId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sxu.crm.basic.domain.OaExamineTravelExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from oa_examine_travel
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update oa_examine_travel
+    <set>
+      <if test="record.travelId != null">
+        travel_id = #{record.travelId,jdbcType=INTEGER},
+      </if>
+      <if test="record.examineId != null">
+        examine_id = #{record.examineId,jdbcType=INTEGER},
+      </if>
+      <if test="record.startAddress != null">
+        start_address = #{record.startAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTime != null">
+        start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endAddress != null">
+        end_address = #{record.endAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endTime != null">
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.traffic != null">
+        traffic = #{record.traffic,jdbcType=DECIMAL},
+      </if>
+      <if test="record.stay != null">
+        `stay` = #{record.stay,jdbcType=DECIMAL},
+      </if>
+      <if test="record.diet != null">
+        diet = #{record.diet,jdbcType=DECIMAL},
+      </if>
+      <if test="record.other != null">
+        other = #{record.other,jdbcType=DECIMAL},
+      </if>
+      <if test="record.money != null">
+        money = #{record.money,jdbcType=DECIMAL},
+      </if>
+      <if test="record.vehicle != null">
+        vehicle = #{record.vehicle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trip != null">
+        trip = #{record.trip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.duration != null">
+        duration = #{record.duration,jdbcType=DECIMAL},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.batchId != null">
+        batch_id = #{record.batchId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update oa_examine_travel
+    set travel_id = #{record.travelId,jdbcType=INTEGER},
+      examine_id = #{record.examineId,jdbcType=INTEGER},
+      start_address = #{record.startAddress,jdbcType=VARCHAR},
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      end_address = #{record.endAddress,jdbcType=VARCHAR},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      traffic = #{record.traffic,jdbcType=DECIMAL},
+      `stay` = #{record.stay,jdbcType=DECIMAL},
+      diet = #{record.diet,jdbcType=DECIMAL},
+      other = #{record.other,jdbcType=DECIMAL},
+      money = #{record.money,jdbcType=DECIMAL},
+      vehicle = #{record.vehicle,jdbcType=VARCHAR},
+      trip = #{record.trip,jdbcType=VARCHAR},
+      duration = #{record.duration,jdbcType=DECIMAL},
+      description = #{record.description,jdbcType=VARCHAR},
+      batch_id = #{record.batchId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sxu.crm.basic.domain.OaExamineTravel">
+    <!--@mbg.generated-->
+    update oa_examine_travel
+    <set>
+      <if test="examineId != null">
+        examine_id = #{examineId,jdbcType=INTEGER},
+      </if>
+      <if test="startAddress != null">
+        start_address = #{startAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endAddress != null">
+        end_address = #{endAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="traffic != null">
+        traffic = #{traffic,jdbcType=DECIMAL},
+      </if>
+      <if test="stay != null">
+        `stay` = #{stay,jdbcType=DECIMAL},
+      </if>
+      <if test="diet != null">
+        diet = #{diet,jdbcType=DECIMAL},
+      </if>
+      <if test="other != null">
+        other = #{other,jdbcType=DECIMAL},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="vehicle != null">
+        vehicle = #{vehicle,jdbcType=VARCHAR},
+      </if>
+      <if test="trip != null">
+        trip = #{trip,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null">
+        duration = #{duration,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="batchId != null">
+        batch_id = #{batchId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where travel_id = #{travelId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sxu.crm.basic.domain.OaExamineTravel">
+    <!--@mbg.generated-->
+    update oa_examine_travel
+    set examine_id = #{examineId,jdbcType=INTEGER},
+      start_address = #{startAddress,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_address = #{endAddress,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      traffic = #{traffic,jdbcType=DECIMAL},
+      `stay` = #{stay,jdbcType=DECIMAL},
+      diet = #{diet,jdbcType=DECIMAL},
+      other = #{other,jdbcType=DECIMAL},
+      money = #{money,jdbcType=DECIMAL},
+      vehicle = #{vehicle,jdbcType=VARCHAR},
+      trip = #{trip,jdbcType=VARCHAR},
+      duration = #{duration,jdbcType=DECIMAL},
+      description = #{description,jdbcType=VARCHAR},
+      batch_id = #{batchId,jdbcType=VARCHAR}
+    where travel_id = #{travelId,jdbcType=INTEGER}
+  </update>
+</mapper>

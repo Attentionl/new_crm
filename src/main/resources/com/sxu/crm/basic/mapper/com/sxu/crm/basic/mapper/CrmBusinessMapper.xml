@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxu.crm.basic.mapper.CrmBusinessMapper">
+  <resultMap id="BaseResultMap" type="com.sxu.crm.basic.domain.CrmBusiness">
+    <!--@mbg.generated-->
+    <!--@Table crm_business-->
+    <id column="business_id" jdbcType="INTEGER" property="businessId" />
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="status_id" jdbcType="INTEGER" property="statusId" />
+    <result column="next_time" jdbcType="TIMESTAMP" property="nextTime" />
+    <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="deal_date" jdbcType="TIMESTAMP" property="dealDate" />
+    <result column="business_name" jdbcType="VARCHAR" property="businessName" />
+    <result column="money" jdbcType="DECIMAL" property="money" />
+    <result column="discount_rate" jdbcType="DECIMAL" property="discountRate" />
+    <result column="total_price" jdbcType="DECIMAL" property="totalPrice" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="owner_user_id" jdbcType="BIGINT" property="ownerUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="batch_id" jdbcType="VARCHAR" property="batchId" />
+    <result column="ro_user_id" jdbcType="LONGVARCHAR" property="roUserId" />
+    <result column="rw_user_id" jdbcType="LONGVARCHAR" property="rwUserId" />
+    <result column="is_end" jdbcType="INTEGER" property="isEnd" />
+    <result column="status_remark" jdbcType="VARCHAR" property="statusRemark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    business_id, type_id, status_id, next_time, customer_id, deal_date, business_name, 
+    money, discount_rate, total_price, remark, create_user_id, owner_user_id, create_time, 
+    update_time, batch_id, ro_user_id, rw_user_id, is_end, status_remark
+  </sql>
+  <select id="selectByExample" parameterType="com.sxu.crm.basic.domain.CrmBusinessExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from crm_business
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from crm_business
+    where business_id = #{businessId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from crm_business
+    where business_id = #{businessId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sxu.crm.basic.domain.CrmBusinessExample">
+    <!--@mbg.generated-->
+    delete from crm_business
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="business_id" keyProperty="businessId" parameterType="com.sxu.crm.basic.domain.CrmBusiness" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into crm_business (type_id, status_id, next_time, 
+      customer_id, deal_date, business_name, 
+      money, discount_rate, total_price, 
+      remark, create_user_id, owner_user_id, 
+      create_time, update_time, batch_id, 
+      ro_user_id, rw_user_id, is_end, 
+      status_remark)
+    values (#{typeId,jdbcType=INTEGER}, #{statusId,jdbcType=INTEGER}, #{nextTime,jdbcType=TIMESTAMP}, 
+      #{customerId,jdbcType=INTEGER}, #{dealDate,jdbcType=TIMESTAMP}, #{businessName,jdbcType=VARCHAR}, 
+      #{money,jdbcType=DECIMAL}, #{discountRate,jdbcType=DECIMAL}, #{totalPrice,jdbcType=DECIMAL}, 
+      #{remark,jdbcType=VARCHAR}, #{createUserId,jdbcType=BIGINT}, #{ownerUserId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{batchId,jdbcType=VARCHAR}, 
+      #{roUserId,jdbcType=LONGVARCHAR}, #{rwUserId,jdbcType=LONGVARCHAR}, #{isEnd,jdbcType=INTEGER}, 
+      #{statusRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="business_id" keyProperty="businessId" parameterType="com.sxu.crm.basic.domain.CrmBusiness" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into crm_business
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="statusId != null">
+        status_id,
+      </if>
+      <if test="nextTime != null">
+        next_time,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="dealDate != null">
+        deal_date,
+      </if>
+      <if test="businessName != null">
+        business_name,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="discountRate != null">
+        discount_rate,
+      </if>
+      <if test="totalPrice != null">
+        total_price,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="ownerUserId != null">
+        owner_user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="batchId != null">
+        batch_id,
+      </if>
+      <if test="roUserId != null">
+        ro_user_id,
+      </if>
+      <if test="rwUserId != null">
+        rw_user_id,
+      </if>
+      <if test="isEnd != null">
+        is_end,
+      </if>
+      <if test="statusRemark != null">
+        status_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="typeId != null">
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="statusId != null">
+        #{statusId,jdbcType=INTEGER},
+      </if>
+      <if test="nextTime != null">
+        #{nextTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="dealDate != null">
+        #{dealDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessName != null">
+        #{businessName,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="discountRate != null">
+        #{discountRate,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null">
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="ownerUserId != null">
+        #{ownerUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="batchId != null">
+        #{batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="roUserId != null">
+        #{roUserId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="rwUserId != null">
+        #{rwUserId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="isEnd != null">
+        #{isEnd,jdbcType=INTEGER},
+      </if>
+      <if test="statusRemark != null">
+        #{statusRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sxu.crm.basic.domain.CrmBusinessExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from crm_business
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update crm_business
+    <set>
+      <if test="record.businessId != null">
+        business_id = #{record.businessId,jdbcType=INTEGER},
+      </if>
+      <if test="record.typeId != null">
+        type_id = #{record.typeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.statusId != null">
+        status_id = #{record.statusId,jdbcType=INTEGER},
+      </if>
+      <if test="record.nextTime != null">
+        next_time = #{record.nextTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.customerId != null">
+        customer_id = #{record.customerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dealDate != null">
+        deal_date = #{record.dealDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.businessName != null">
+        business_name = #{record.businessName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.money != null">
+        money = #{record.money,jdbcType=DECIMAL},
+      </if>
+      <if test="record.discountRate != null">
+        discount_rate = #{record.discountRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalPrice != null">
+        total_price = #{record.totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserId != null">
+        create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.ownerUserId != null">
+        owner_user_id = #{record.ownerUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.batchId != null">
+        batch_id = #{record.batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roUserId != null">
+        ro_user_id = #{record.roUserId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.rwUserId != null">
+        rw_user_id = #{record.rwUserId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.isEnd != null">
+        is_end = #{record.isEnd,jdbcType=INTEGER},
+      </if>
+      <if test="record.statusRemark != null">
+        status_remark = #{record.statusRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update crm_business
+    set business_id = #{record.businessId,jdbcType=INTEGER},
+      type_id = #{record.typeId,jdbcType=INTEGER},
+      status_id = #{record.statusId,jdbcType=INTEGER},
+      next_time = #{record.nextTime,jdbcType=TIMESTAMP},
+      customer_id = #{record.customerId,jdbcType=INTEGER},
+      deal_date = #{record.dealDate,jdbcType=TIMESTAMP},
+      business_name = #{record.businessName,jdbcType=VARCHAR},
+      money = #{record.money,jdbcType=DECIMAL},
+      discount_rate = #{record.discountRate,jdbcType=DECIMAL},
+      total_price = #{record.totalPrice,jdbcType=DECIMAL},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      owner_user_id = #{record.ownerUserId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      batch_id = #{record.batchId,jdbcType=VARCHAR},
+      ro_user_id = #{record.roUserId,jdbcType=LONGVARCHAR},
+      rw_user_id = #{record.rwUserId,jdbcType=LONGVARCHAR},
+      is_end = #{record.isEnd,jdbcType=INTEGER},
+      status_remark = #{record.statusRemark,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sxu.crm.basic.domain.CrmBusiness">
+    <!--@mbg.generated-->
+    update crm_business
+    <set>
+      <if test="typeId != null">
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="statusId != null">
+        status_id = #{statusId,jdbcType=INTEGER},
+      </if>
+      <if test="nextTime != null">
+        next_time = #{nextTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="dealDate != null">
+        deal_date = #{dealDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessName != null">
+        business_name = #{businessName,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="discountRate != null">
+        discount_rate = #{discountRate,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null">
+        total_price = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="ownerUserId != null">
+        owner_user_id = #{ownerUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="batchId != null">
+        batch_id = #{batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="roUserId != null">
+        ro_user_id = #{roUserId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="rwUserId != null">
+        rw_user_id = #{rwUserId,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="isEnd != null">
+        is_end = #{isEnd,jdbcType=INTEGER},
+      </if>
+      <if test="statusRemark != null">
+        status_remark = #{statusRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where business_id = #{businessId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sxu.crm.basic.domain.CrmBusiness">
+    <!--@mbg.generated-->
+    update crm_business
+    set type_id = #{typeId,jdbcType=INTEGER},
+      status_id = #{statusId,jdbcType=INTEGER},
+      next_time = #{nextTime,jdbcType=TIMESTAMP},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      deal_date = #{dealDate,jdbcType=TIMESTAMP},
+      business_name = #{businessName,jdbcType=VARCHAR},
+      money = #{money,jdbcType=DECIMAL},
+      discount_rate = #{discountRate,jdbcType=DECIMAL},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      owner_user_id = #{ownerUserId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      batch_id = #{batchId,jdbcType=VARCHAR},
+      ro_user_id = #{roUserId,jdbcType=LONGVARCHAR},
+      rw_user_id = #{rwUserId,jdbcType=LONGVARCHAR},
+      is_end = #{isEnd,jdbcType=INTEGER},
+      status_remark = #{statusRemark,jdbcType=VARCHAR}
+    where business_id = #{businessId,jdbcType=INTEGER}
+  </update>
+</mapper>

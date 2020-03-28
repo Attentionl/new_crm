@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxu.crm.basic.mapper.OaLogMapper">
+  <resultMap id="BaseResultMap" type="com.sxu.crm.basic.domain.OaLog">
+    <!--@mbg.generated-->
+    <!--@Table oa_log-->
+    <id column="log_id" jdbcType="INTEGER" property="logId" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="tomorrow" jdbcType="VARCHAR" property="tomorrow" />
+    <result column="question" jdbcType="VARCHAR" property="question" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="send_user_ids" jdbcType="VARCHAR" property="sendUserIds" />
+    <result column="send_dept_ids" jdbcType="VARCHAR" property="sendDeptIds" />
+    <result column="read_user_ids" jdbcType="VARCHAR" property="readUserIds" />
+    <result column="batch_id" jdbcType="VARCHAR" property="batchId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    log_id, category_id, title, content, tomorrow, question, create_user_id, create_time, 
+    update_time, send_user_ids, send_dept_ids, read_user_ids, batch_id
+  </sql>
+  <select id="selectByExample" parameterType="com.sxu.crm.basic.domain.OaLogExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from oa_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from oa_log
+    where log_id = #{logId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from oa_log
+    where log_id = #{logId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sxu.crm.basic.domain.OaLogExample">
+    <!--@mbg.generated-->
+    delete from oa_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="log_id" keyProperty="logId" parameterType="com.sxu.crm.basic.domain.OaLog" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into oa_log (category_id, title, content, 
+      tomorrow, question, create_user_id, 
+      create_time, update_time, send_user_ids, 
+      send_dept_ids, read_user_ids, batch_id
+      )
+    values (#{categoryId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}, 
+      #{tomorrow,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, #{createUserId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{sendUserIds,jdbcType=VARCHAR}, 
+      #{sendDeptIds,jdbcType=VARCHAR}, #{readUserIds,jdbcType=VARCHAR}, #{batchId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="log_id" keyProperty="logId" parameterType="com.sxu.crm.basic.domain.OaLog" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into oa_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="tomorrow != null">
+        tomorrow,
+      </if>
+      <if test="question != null">
+        question,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="sendUserIds != null">
+        send_user_ids,
+      </if>
+      <if test="sendDeptIds != null">
+        send_dept_ids,
+      </if>
+      <if test="readUserIds != null">
+        read_user_ids,
+      </if>
+      <if test="batchId != null">
+        batch_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="tomorrow != null">
+        #{tomorrow,jdbcType=VARCHAR},
+      </if>
+      <if test="question != null">
+        #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendUserIds != null">
+        #{sendUserIds,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDeptIds != null">
+        #{sendDeptIds,jdbcType=VARCHAR},
+      </if>
+      <if test="readUserIds != null">
+        #{readUserIds,jdbcType=VARCHAR},
+      </if>
+      <if test="batchId != null">
+        #{batchId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sxu.crm.basic.domain.OaLogExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from oa_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update oa_log
+    <set>
+      <if test="record.logId != null">
+        log_id = #{record.logId,jdbcType=INTEGER},
+      </if>
+      <if test="record.categoryId != null">
+        category_id = #{record.categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.tomorrow != null">
+        tomorrow = #{record.tomorrow,jdbcType=VARCHAR},
+      </if>
+      <if test="record.question != null">
+        question = #{record.question,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserId != null">
+        create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sendUserIds != null">
+        send_user_ids = #{record.sendUserIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendDeptIds != null">
+        send_dept_ids = #{record.sendDeptIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.readUserIds != null">
+        read_user_ids = #{record.readUserIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.batchId != null">
+        batch_id = #{record.batchId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update oa_log
+    set log_id = #{record.logId,jdbcType=INTEGER},
+      category_id = #{record.categoryId,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=LONGVARCHAR},
+      tomorrow = #{record.tomorrow,jdbcType=VARCHAR},
+      question = #{record.question,jdbcType=VARCHAR},
+      create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      send_user_ids = #{record.sendUserIds,jdbcType=VARCHAR},
+      send_dept_ids = #{record.sendDeptIds,jdbcType=VARCHAR},
+      read_user_ids = #{record.readUserIds,jdbcType=VARCHAR},
+      batch_id = #{record.batchId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sxu.crm.basic.domain.OaLog">
+    <!--@mbg.generated-->
+    update oa_log
+    <set>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="tomorrow != null">
+        tomorrow = #{tomorrow,jdbcType=VARCHAR},
+      </if>
+      <if test="question != null">
+        question = #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendUserIds != null">
+        send_user_ids = #{sendUserIds,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDeptIds != null">
+        send_dept_ids = #{sendDeptIds,jdbcType=VARCHAR},
+      </if>
+      <if test="readUserIds != null">
+        read_user_ids = #{readUserIds,jdbcType=VARCHAR},
+      </if>
+      <if test="batchId != null">
+        batch_id = #{batchId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where log_id = #{logId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sxu.crm.basic.domain.OaLog">
+    <!--@mbg.generated-->
+    update oa_log
+    set category_id = #{categoryId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR},
+      tomorrow = #{tomorrow,jdbcType=VARCHAR},
+      question = #{question,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      send_user_ids = #{sendUserIds,jdbcType=VARCHAR},
+      send_dept_ids = #{sendDeptIds,jdbcType=VARCHAR},
+      read_user_ids = #{readUserIds,jdbcType=VARCHAR},
+      batch_id = #{batchId,jdbcType=VARCHAR}
+    where log_id = #{logId,jdbcType=INTEGER}
+  </update>
+</mapper>

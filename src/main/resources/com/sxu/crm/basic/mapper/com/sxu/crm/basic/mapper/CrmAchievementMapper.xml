@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxu.crm.basic.mapper.CrmAchievementMapper">
+  <resultMap id="BaseResultMap" type="com.sxu.crm.basic.domain.CrmAchievement">
+    <!--@mbg.generated-->
+    <!--@Table crm_achievement-->
+    <id column="achievement_id" jdbcType="INTEGER" property="achievementId" />
+    <result column="obj_id" jdbcType="INTEGER" property="objId" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="year" jdbcType="VARCHAR" property="year" />
+    <result column="january" jdbcType="DECIMAL" property="january" />
+    <result column="february" jdbcType="DECIMAL" property="february" />
+    <result column="march" jdbcType="DECIMAL" property="march" />
+    <result column="april" jdbcType="DECIMAL" property="april" />
+    <result column="may" jdbcType="DECIMAL" property="may" />
+    <result column="june" jdbcType="DECIMAL" property="june" />
+    <result column="july" jdbcType="DECIMAL" property="july" />
+    <result column="august" jdbcType="DECIMAL" property="august" />
+    <result column="september" jdbcType="DECIMAL" property="september" />
+    <result column="october" jdbcType="DECIMAL" property="october" />
+    <result column="november" jdbcType="DECIMAL" property="november" />
+    <result column="december" jdbcType="DECIMAL" property="december" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="yeartarget" jdbcType="DECIMAL" property="yeartarget" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    achievement_id, obj_id, `type`, `year`, january, february, march, april, may, june, 
+    july, august, september, october, november, december, `status`, yeartarget
+  </sql>
+  <select id="selectByExample" parameterType="com.sxu.crm.basic.domain.CrmAchievementExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from crm_achievement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from crm_achievement
+    where achievement_id = #{achievementId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from crm_achievement
+    where achievement_id = #{achievementId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sxu.crm.basic.domain.CrmAchievementExample">
+    <!--@mbg.generated-->
+    delete from crm_achievement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="achievement_id" keyProperty="achievementId" parameterType="com.sxu.crm.basic.domain.CrmAchievement" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into crm_achievement (obj_id, `type`, `year`, 
+      january, february, march, 
+      april, may, june, july, 
+      august, september, october, 
+      november, december, `status`, 
+      yeartarget)
+    values (#{objId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{year,jdbcType=VARCHAR}, 
+      #{january,jdbcType=DECIMAL}, #{february,jdbcType=DECIMAL}, #{march,jdbcType=DECIMAL}, 
+      #{april,jdbcType=DECIMAL}, #{may,jdbcType=DECIMAL}, #{june,jdbcType=DECIMAL}, #{july,jdbcType=DECIMAL}, 
+      #{august,jdbcType=DECIMAL}, #{september,jdbcType=DECIMAL}, #{october,jdbcType=DECIMAL}, 
+      #{november,jdbcType=DECIMAL}, #{december,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, 
+      #{yeartarget,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" keyColumn="achievement_id" keyProperty="achievementId" parameterType="com.sxu.crm.basic.domain.CrmAchievement" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into crm_achievement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="objId != null">
+        obj_id,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="year != null">
+        `year`,
+      </if>
+      <if test="january != null">
+        january,
+      </if>
+      <if test="february != null">
+        february,
+      </if>
+      <if test="march != null">
+        march,
+      </if>
+      <if test="april != null">
+        april,
+      </if>
+      <if test="may != null">
+        may,
+      </if>
+      <if test="june != null">
+        june,
+      </if>
+      <if test="july != null">
+        july,
+      </if>
+      <if test="august != null">
+        august,
+      </if>
+      <if test="september != null">
+        september,
+      </if>
+      <if test="october != null">
+        october,
+      </if>
+      <if test="november != null">
+        november,
+      </if>
+      <if test="december != null">
+        december,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="yeartarget != null">
+        yeartarget,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="objId != null">
+        #{objId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="january != null">
+        #{january,jdbcType=DECIMAL},
+      </if>
+      <if test="february != null">
+        #{february,jdbcType=DECIMAL},
+      </if>
+      <if test="march != null">
+        #{march,jdbcType=DECIMAL},
+      </if>
+      <if test="april != null">
+        #{april,jdbcType=DECIMAL},
+      </if>
+      <if test="may != null">
+        #{may,jdbcType=DECIMAL},
+      </if>
+      <if test="june != null">
+        #{june,jdbcType=DECIMAL},
+      </if>
+      <if test="july != null">
+        #{july,jdbcType=DECIMAL},
+      </if>
+      <if test="august != null">
+        #{august,jdbcType=DECIMAL},
+      </if>
+      <if test="september != null">
+        #{september,jdbcType=DECIMAL},
+      </if>
+      <if test="october != null">
+        #{october,jdbcType=DECIMAL},
+      </if>
+      <if test="november != null">
+        #{november,jdbcType=DECIMAL},
+      </if>
+      <if test="december != null">
+        #{december,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="yeartarget != null">
+        #{yeartarget,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sxu.crm.basic.domain.CrmAchievementExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from crm_achievement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update crm_achievement
+    <set>
+      <if test="record.achievementId != null">
+        achievement_id = #{record.achievementId,jdbcType=INTEGER},
+      </if>
+      <if test="record.objId != null">
+        obj_id = #{record.objId,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null">
+        `type` = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.year != null">
+        `year` = #{record.year,jdbcType=VARCHAR},
+      </if>
+      <if test="record.january != null">
+        january = #{record.january,jdbcType=DECIMAL},
+      </if>
+      <if test="record.february != null">
+        february = #{record.february,jdbcType=DECIMAL},
+      </if>
+      <if test="record.march != null">
+        march = #{record.march,jdbcType=DECIMAL},
+      </if>
+      <if test="record.april != null">
+        april = #{record.april,jdbcType=DECIMAL},
+      </if>
+      <if test="record.may != null">
+        may = #{record.may,jdbcType=DECIMAL},
+      </if>
+      <if test="record.june != null">
+        june = #{record.june,jdbcType=DECIMAL},
+      </if>
+      <if test="record.july != null">
+        july = #{record.july,jdbcType=DECIMAL},
+      </if>
+      <if test="record.august != null">
+        august = #{record.august,jdbcType=DECIMAL},
+      </if>
+      <if test="record.september != null">
+        september = #{record.september,jdbcType=DECIMAL},
+      </if>
+      <if test="record.october != null">
+        october = #{record.october,jdbcType=DECIMAL},
+      </if>
+      <if test="record.november != null">
+        november = #{record.november,jdbcType=DECIMAL},
+      </if>
+      <if test="record.december != null">
+        december = #{record.december,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null">
+        `status` = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.yeartarget != null">
+        yeartarget = #{record.yeartarget,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update crm_achievement
+    set achievement_id = #{record.achievementId,jdbcType=INTEGER},
+      obj_id = #{record.objId,jdbcType=INTEGER},
+      `type` = #{record.type,jdbcType=INTEGER},
+      `year` = #{record.year,jdbcType=VARCHAR},
+      january = #{record.january,jdbcType=DECIMAL},
+      february = #{record.february,jdbcType=DECIMAL},
+      march = #{record.march,jdbcType=DECIMAL},
+      april = #{record.april,jdbcType=DECIMAL},
+      may = #{record.may,jdbcType=DECIMAL},
+      june = #{record.june,jdbcType=DECIMAL},
+      july = #{record.july,jdbcType=DECIMAL},
+      august = #{record.august,jdbcType=DECIMAL},
+      september = #{record.september,jdbcType=DECIMAL},
+      october = #{record.october,jdbcType=DECIMAL},
+      november = #{record.november,jdbcType=DECIMAL},
+      december = #{record.december,jdbcType=DECIMAL},
+      `status` = #{record.status,jdbcType=INTEGER},
+      yeartarget = #{record.yeartarget,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sxu.crm.basic.domain.CrmAchievement">
+    <!--@mbg.generated-->
+    update crm_achievement
+    <set>
+      <if test="objId != null">
+        obj_id = #{objId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="year != null">
+        `year` = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="january != null">
+        january = #{january,jdbcType=DECIMAL},
+      </if>
+      <if test="february != null">
+        february = #{february,jdbcType=DECIMAL},
+      </if>
+      <if test="march != null">
+        march = #{march,jdbcType=DECIMAL},
+      </if>
+      <if test="april != null">
+        april = #{april,jdbcType=DECIMAL},
+      </if>
+      <if test="may != null">
+        may = #{may,jdbcType=DECIMAL},
+      </if>
+      <if test="june != null">
+        june = #{june,jdbcType=DECIMAL},
+      </if>
+      <if test="july != null">
+        july = #{july,jdbcType=DECIMAL},
+      </if>
+      <if test="august != null">
+        august = #{august,jdbcType=DECIMAL},
+      </if>
+      <if test="september != null">
+        september = #{september,jdbcType=DECIMAL},
+      </if>
+      <if test="october != null">
+        october = #{october,jdbcType=DECIMAL},
+      </if>
+      <if test="november != null">
+        november = #{november,jdbcType=DECIMAL},
+      </if>
+      <if test="december != null">
+        december = #{december,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="yeartarget != null">
+        yeartarget = #{yeartarget,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where achievement_id = #{achievementId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sxu.crm.basic.domain.CrmAchievement">
+    <!--@mbg.generated-->
+    update crm_achievement
+    set obj_id = #{objId,jdbcType=INTEGER},
+      `type` = #{type,jdbcType=INTEGER},
+      `year` = #{year,jdbcType=VARCHAR},
+      january = #{january,jdbcType=DECIMAL},
+      february = #{february,jdbcType=DECIMAL},
+      march = #{march,jdbcType=DECIMAL},
+      april = #{april,jdbcType=DECIMAL},
+      may = #{may,jdbcType=DECIMAL},
+      june = #{june,jdbcType=DECIMAL},
+      july = #{july,jdbcType=DECIMAL},
+      august = #{august,jdbcType=DECIMAL},
+      september = #{september,jdbcType=DECIMAL},
+      october = #{october,jdbcType=DECIMAL},
+      november = #{november,jdbcType=DECIMAL},
+      december = #{december,jdbcType=DECIMAL},
+      `status` = #{status,jdbcType=INTEGER},
+      yeartarget = #{yeartarget,jdbcType=DECIMAL}
+    where achievement_id = #{achievementId,jdbcType=INTEGER}
+  </update>
+</mapper>

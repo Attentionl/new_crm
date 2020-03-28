@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxu.crm.basic.mapper.AdminSceneMapper">
+  <resultMap id="BaseResultMap" type="com.sxu.crm.basic.domain.AdminScene">
+    <!--@mbg.generated-->
+    <!--@Table admin_scene-->
+    <id column="scene_id" jdbcType="INTEGER" property="sceneId" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="data" jdbcType="LONGVARCHAR" property="data" />
+    <result column="is_hide" jdbcType="INTEGER" property="isHide" />
+    <result column="is_system" jdbcType="INTEGER" property="isSystem" />
+    <result column="bydata" jdbcType="VARCHAR" property="bydata" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    scene_id, `type`, `name`, user_id, sort, `data`, is_hide, is_system, bydata, create_time, 
+    update_time
+  </sql>
+  <select id="selectByExample" parameterType="com.sxu.crm.basic.domain.AdminSceneExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from admin_scene
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from admin_scene
+    where scene_id = #{sceneId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from admin_scene
+    where scene_id = #{sceneId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sxu.crm.basic.domain.AdminSceneExample">
+    <!--@mbg.generated-->
+    delete from admin_scene
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="scene_id" keyProperty="sceneId" parameterType="com.sxu.crm.basic.domain.AdminScene" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into admin_scene (`type`, `name`, user_id, 
+      sort, `data`, is_hide, 
+      is_system, bydata, create_time, 
+      update_time)
+    values (#{type,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
+      #{sort,jdbcType=INTEGER}, #{data,jdbcType=LONGVARCHAR}, #{isHide,jdbcType=INTEGER}, 
+      #{isSystem,jdbcType=INTEGER}, #{bydata,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="scene_id" keyProperty="sceneId" parameterType="com.sxu.crm.basic.domain.AdminScene" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into admin_scene
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="data != null">
+        `data`,
+      </if>
+      <if test="isHide != null">
+        is_hide,
+      </if>
+      <if test="isSystem != null">
+        is_system,
+      </if>
+      <if test="bydata != null">
+        bydata,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="data != null">
+        #{data,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="isHide != null">
+        #{isHide,jdbcType=INTEGER},
+      </if>
+      <if test="isSystem != null">
+        #{isSystem,jdbcType=INTEGER},
+      </if>
+      <if test="bydata != null">
+        #{bydata,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sxu.crm.basic.domain.AdminSceneExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from admin_scene
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update admin_scene
+    <set>
+      <if test="record.sceneId != null">
+        scene_id = #{record.sceneId,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null">
+        `type` = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        `name` = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.sort != null">
+        sort = #{record.sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.data != null">
+        `data` = #{record.data,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.isHide != null">
+        is_hide = #{record.isHide,jdbcType=INTEGER},
+      </if>
+      <if test="record.isSystem != null">
+        is_system = #{record.isSystem,jdbcType=INTEGER},
+      </if>
+      <if test="record.bydata != null">
+        bydata = #{record.bydata,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update admin_scene
+    set scene_id = #{record.sceneId,jdbcType=INTEGER},
+      `type` = #{record.type,jdbcType=INTEGER},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      sort = #{record.sort,jdbcType=INTEGER},
+      `data` = #{record.data,jdbcType=LONGVARCHAR},
+      is_hide = #{record.isHide,jdbcType=INTEGER},
+      is_system = #{record.isSystem,jdbcType=INTEGER},
+      bydata = #{record.bydata,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sxu.crm.basic.domain.AdminScene">
+    <!--@mbg.generated-->
+    update admin_scene
+    <set>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="data != null">
+        `data` = #{data,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="isHide != null">
+        is_hide = #{isHide,jdbcType=INTEGER},
+      </if>
+      <if test="isSystem != null">
+        is_system = #{isSystem,jdbcType=INTEGER},
+      </if>
+      <if test="bydata != null">
+        bydata = #{bydata,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where scene_id = #{sceneId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sxu.crm.basic.domain.AdminScene">
+    <!--@mbg.generated-->
+    update admin_scene
+    set `type` = #{type,jdbcType=INTEGER},
+      `name` = #{name,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      sort = #{sort,jdbcType=INTEGER},
+      `data` = #{data,jdbcType=LONGVARCHAR},
+      is_hide = #{isHide,jdbcType=INTEGER},
+      is_system = #{isSystem,jdbcType=INTEGER},
+      bydata = #{bydata,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where scene_id = #{sceneId,jdbcType=INTEGER}
+  </update>
+</mapper>

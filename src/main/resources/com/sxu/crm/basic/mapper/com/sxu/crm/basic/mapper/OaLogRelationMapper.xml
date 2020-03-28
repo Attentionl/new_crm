@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxu.crm.basic.mapper.OaLogRelationMapper">
+  <resultMap id="BaseResultMap" type="com.sxu.crm.basic.domain.OaLogRelation">
+    <!--@mbg.generated-->
+    <!--@Table oa_log_relation-->
+    <id column="r_id" jdbcType="INTEGER" property="rId" />
+    <result column="log_id" jdbcType="INTEGER" property="logId" />
+    <result column="customer_ids" jdbcType="VARCHAR" property="customerIds" />
+    <result column="contacts_ids" jdbcType="VARCHAR" property="contactsIds" />
+    <result column="business_ids" jdbcType="VARCHAR" property="businessIds" />
+    <result column="contract_ids" jdbcType="VARCHAR" property="contractIds" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    r_id, log_id, customer_ids, contacts_ids, business_ids, contract_ids, `status`, create_time
+  </sql>
+  <select id="selectByExample" parameterType="com.sxu.crm.basic.domain.OaLogRelationExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from oa_log_relation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from oa_log_relation
+    where r_id = #{rId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from oa_log_relation
+    where r_id = #{rId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sxu.crm.basic.domain.OaLogRelationExample">
+    <!--@mbg.generated-->
+    delete from oa_log_relation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="r_id" keyProperty="rId" parameterType="com.sxu.crm.basic.domain.OaLogRelation" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into oa_log_relation (log_id, customer_ids, contacts_ids, 
+      business_ids, contract_ids, `status`, 
+      create_time)
+    values (#{logId,jdbcType=INTEGER}, #{customerIds,jdbcType=VARCHAR}, #{contactsIds,jdbcType=VARCHAR}, 
+      #{businessIds,jdbcType=VARCHAR}, #{contractIds,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="r_id" keyProperty="rId" parameterType="com.sxu.crm.basic.domain.OaLogRelation" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into oa_log_relation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        log_id,
+      </if>
+      <if test="customerIds != null">
+        customer_ids,
+      </if>
+      <if test="contactsIds != null">
+        contacts_ids,
+      </if>
+      <if test="businessIds != null">
+        business_ids,
+      </if>
+      <if test="contractIds != null">
+        contract_ids,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        #{logId,jdbcType=INTEGER},
+      </if>
+      <if test="customerIds != null">
+        #{customerIds,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsIds != null">
+        #{contactsIds,jdbcType=VARCHAR},
+      </if>
+      <if test="businessIds != null">
+        #{businessIds,jdbcType=VARCHAR},
+      </if>
+      <if test="contractIds != null">
+        #{contractIds,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sxu.crm.basic.domain.OaLogRelationExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from oa_log_relation
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update oa_log_relation
+    <set>
+      <if test="record.rId != null">
+        r_id = #{record.rId,jdbcType=INTEGER},
+      </if>
+      <if test="record.logId != null">
+        log_id = #{record.logId,jdbcType=INTEGER},
+      </if>
+      <if test="record.customerIds != null">
+        customer_ids = #{record.customerIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactsIds != null">
+        contacts_ids = #{record.contactsIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessIds != null">
+        business_ids = #{record.businessIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractIds != null">
+        contract_ids = #{record.contractIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        `status` = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update oa_log_relation
+    set r_id = #{record.rId,jdbcType=INTEGER},
+      log_id = #{record.logId,jdbcType=INTEGER},
+      customer_ids = #{record.customerIds,jdbcType=VARCHAR},
+      contacts_ids = #{record.contactsIds,jdbcType=VARCHAR},
+      business_ids = #{record.businessIds,jdbcType=VARCHAR},
+      contract_ids = #{record.contractIds,jdbcType=VARCHAR},
+      `status` = #{record.status,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sxu.crm.basic.domain.OaLogRelation">
+    <!--@mbg.generated-->
+    update oa_log_relation
+    <set>
+      <if test="logId != null">
+        log_id = #{logId,jdbcType=INTEGER},
+      </if>
+      <if test="customerIds != null">
+        customer_ids = #{customerIds,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsIds != null">
+        contacts_ids = #{contactsIds,jdbcType=VARCHAR},
+      </if>
+      <if test="businessIds != null">
+        business_ids = #{businessIds,jdbcType=VARCHAR},
+      </if>
+      <if test="contractIds != null">
+        contract_ids = #{contractIds,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where r_id = #{rId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sxu.crm.basic.domain.OaLogRelation">
+    <!--@mbg.generated-->
+    update oa_log_relation
+    set log_id = #{logId,jdbcType=INTEGER},
+      customer_ids = #{customerIds,jdbcType=VARCHAR},
+      contacts_ids = #{contactsIds,jdbcType=VARCHAR},
+      business_ids = #{businessIds,jdbcType=VARCHAR},
+      contract_ids = #{contractIds,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where r_id = #{rId,jdbcType=INTEGER}
+  </update>
+</mapper>

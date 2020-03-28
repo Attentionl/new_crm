@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxu.crm.basic.mapper.AdminFieldMapper">
+  <resultMap id="BaseResultMap" type="com.sxu.crm.basic.domain.AdminField">
+    <!--@mbg.generated-->
+    <!--@Table admin_field-->
+    <id column="field_id" jdbcType="INTEGER" property="fieldId" />
+    <result column="field_name" jdbcType="VARCHAR" property="fieldName" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="label" jdbcType="INTEGER" property="label" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="input_tips" jdbcType="VARCHAR" property="inputTips" />
+    <result column="max_length" jdbcType="INTEGER" property="maxLength" />
+    <result column="default_value" jdbcType="VARCHAR" property="defaultValue" />
+    <result column="is_unique" jdbcType="INTEGER" property="isUnique" />
+    <result column="is_null" jdbcType="INTEGER" property="isNull" />
+    <result column="sorting" jdbcType="INTEGER" property="sorting" />
+    <result column="options" jdbcType="LONGVARCHAR" property="options" />
+    <result column="operating" jdbcType="INTEGER" property="operating" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="examine_category_id" jdbcType="INTEGER" property="examineCategoryId" />
+    <result column="field_type" jdbcType="INTEGER" property="fieldType" />
+    <result column="relevant" jdbcType="INTEGER" property="relevant" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    field_id, field_name, `name`, `type`, `label`, remark, input_tips, max_length, default_value, 
+    is_unique, is_null, sorting, `options`, operating, update_time, examine_category_id, 
+    field_type, relevant
+  </sql>
+  <select id="selectByExample" parameterType="com.sxu.crm.basic.domain.AdminFieldExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from admin_field
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from admin_field
+    where field_id = #{fieldId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from admin_field
+    where field_id = #{fieldId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sxu.crm.basic.domain.AdminFieldExample">
+    <!--@mbg.generated-->
+    delete from admin_field
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="field_id" keyProperty="fieldId" parameterType="com.sxu.crm.basic.domain.AdminField" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into admin_field (field_name, `name`, `type`, 
+      `label`, remark, input_tips, 
+      max_length, default_value, is_unique, 
+      is_null, sorting, `options`, 
+      operating, update_time, examine_category_id, 
+      field_type, relevant)
+    values (#{fieldName,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{label,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{inputTips,jdbcType=VARCHAR}, 
+      #{maxLength,jdbcType=INTEGER}, #{defaultValue,jdbcType=VARCHAR}, #{isUnique,jdbcType=INTEGER}, 
+      #{isNull,jdbcType=INTEGER}, #{sorting,jdbcType=INTEGER}, #{options,jdbcType=LONGVARCHAR}, 
+      #{operating,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{examineCategoryId,jdbcType=INTEGER}, 
+      #{fieldType,jdbcType=INTEGER}, #{relevant,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="field_id" keyProperty="fieldId" parameterType="com.sxu.crm.basic.domain.AdminField" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into admin_field
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fieldName != null">
+        field_name,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="label != null">
+        `label`,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="inputTips != null">
+        input_tips,
+      </if>
+      <if test="maxLength != null">
+        max_length,
+      </if>
+      <if test="defaultValue != null">
+        default_value,
+      </if>
+      <if test="isUnique != null">
+        is_unique,
+      </if>
+      <if test="isNull != null">
+        is_null,
+      </if>
+      <if test="sorting != null">
+        sorting,
+      </if>
+      <if test="options != null">
+        `options`,
+      </if>
+      <if test="operating != null">
+        operating,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="examineCategoryId != null">
+        examine_category_id,
+      </if>
+      <if test="fieldType != null">
+        field_type,
+      </if>
+      <if test="relevant != null">
+        relevant,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fieldName != null">
+        #{fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="label != null">
+        #{label,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="inputTips != null">
+        #{inputTips,jdbcType=VARCHAR},
+      </if>
+      <if test="maxLength != null">
+        #{maxLength,jdbcType=INTEGER},
+      </if>
+      <if test="defaultValue != null">
+        #{defaultValue,jdbcType=VARCHAR},
+      </if>
+      <if test="isUnique != null">
+        #{isUnique,jdbcType=INTEGER},
+      </if>
+      <if test="isNull != null">
+        #{isNull,jdbcType=INTEGER},
+      </if>
+      <if test="sorting != null">
+        #{sorting,jdbcType=INTEGER},
+      </if>
+      <if test="options != null">
+        #{options,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="operating != null">
+        #{operating,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examineCategoryId != null">
+        #{examineCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="fieldType != null">
+        #{fieldType,jdbcType=INTEGER},
+      </if>
+      <if test="relevant != null">
+        #{relevant,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sxu.crm.basic.domain.AdminFieldExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from admin_field
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update admin_field
+    <set>
+      <if test="record.fieldId != null">
+        field_id = #{record.fieldId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fieldName != null">
+        field_name = #{record.fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        `name` = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        `type` = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.label != null">
+        `label` = #{record.label,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inputTips != null">
+        input_tips = #{record.inputTips,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maxLength != null">
+        max_length = #{record.maxLength,jdbcType=INTEGER},
+      </if>
+      <if test="record.defaultValue != null">
+        default_value = #{record.defaultValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isUnique != null">
+        is_unique = #{record.isUnique,jdbcType=INTEGER},
+      </if>
+      <if test="record.isNull != null">
+        is_null = #{record.isNull,jdbcType=INTEGER},
+      </if>
+      <if test="record.sorting != null">
+        sorting = #{record.sorting,jdbcType=INTEGER},
+      </if>
+      <if test="record.options != null">
+        `options` = #{record.options,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.operating != null">
+        operating = #{record.operating,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.examineCategoryId != null">
+        examine_category_id = #{record.examineCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fieldType != null">
+        field_type = #{record.fieldType,jdbcType=INTEGER},
+      </if>
+      <if test="record.relevant != null">
+        relevant = #{record.relevant,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update admin_field
+    set field_id = #{record.fieldId,jdbcType=INTEGER},
+      field_name = #{record.fieldName,jdbcType=VARCHAR},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      `type` = #{record.type,jdbcType=INTEGER},
+      `label` = #{record.label,jdbcType=INTEGER},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      input_tips = #{record.inputTips,jdbcType=VARCHAR},
+      max_length = #{record.maxLength,jdbcType=INTEGER},
+      default_value = #{record.defaultValue,jdbcType=VARCHAR},
+      is_unique = #{record.isUnique,jdbcType=INTEGER},
+      is_null = #{record.isNull,jdbcType=INTEGER},
+      sorting = #{record.sorting,jdbcType=INTEGER},
+      `options` = #{record.options,jdbcType=LONGVARCHAR},
+      operating = #{record.operating,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      examine_category_id = #{record.examineCategoryId,jdbcType=INTEGER},
+      field_type = #{record.fieldType,jdbcType=INTEGER},
+      relevant = #{record.relevant,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sxu.crm.basic.domain.AdminField">
+    <!--@mbg.generated-->
+    update admin_field
+    <set>
+      <if test="fieldName != null">
+        field_name = #{fieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="label != null">
+        `label` = #{label,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="inputTips != null">
+        input_tips = #{inputTips,jdbcType=VARCHAR},
+      </if>
+      <if test="maxLength != null">
+        max_length = #{maxLength,jdbcType=INTEGER},
+      </if>
+      <if test="defaultValue != null">
+        default_value = #{defaultValue,jdbcType=VARCHAR},
+      </if>
+      <if test="isUnique != null">
+        is_unique = #{isUnique,jdbcType=INTEGER},
+      </if>
+      <if test="isNull != null">
+        is_null = #{isNull,jdbcType=INTEGER},
+      </if>
+      <if test="sorting != null">
+        sorting = #{sorting,jdbcType=INTEGER},
+      </if>
+      <if test="options != null">
+        `options` = #{options,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="operating != null">
+        operating = #{operating,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examineCategoryId != null">
+        examine_category_id = #{examineCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="fieldType != null">
+        field_type = #{fieldType,jdbcType=INTEGER},
+      </if>
+      <if test="relevant != null">
+        relevant = #{relevant,jdbcType=INTEGER},
+      </if>
+    </set>
+    where field_id = #{fieldId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sxu.crm.basic.domain.AdminField">
+    <!--@mbg.generated-->
+    update admin_field
+    set field_name = #{fieldName,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=INTEGER},
+      `label` = #{label,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      input_tips = #{inputTips,jdbcType=VARCHAR},
+      max_length = #{maxLength,jdbcType=INTEGER},
+      default_value = #{defaultValue,jdbcType=VARCHAR},
+      is_unique = #{isUnique,jdbcType=INTEGER},
+      is_null = #{isNull,jdbcType=INTEGER},
+      sorting = #{sorting,jdbcType=INTEGER},
+      `options` = #{options,jdbcType=LONGVARCHAR},
+      operating = #{operating,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      examine_category_id = #{examineCategoryId,jdbcType=INTEGER},
+      field_type = #{fieldType,jdbcType=INTEGER},
+      relevant = #{relevant,jdbcType=INTEGER}
+    where field_id = #{fieldId,jdbcType=INTEGER}
+  </update>
+</mapper>

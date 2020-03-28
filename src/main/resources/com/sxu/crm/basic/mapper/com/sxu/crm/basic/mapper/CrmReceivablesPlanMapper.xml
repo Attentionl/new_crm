@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sxu.crm.basic.mapper.CrmReceivablesPlanMapper">
+  <resultMap id="BaseResultMap" type="com.sxu.crm.basic.domain.CrmReceivablesPlan">
+    <!--@mbg.generated-->
+    <!--@Table crm_receivables_plan-->
+    <id column="plan_id" jdbcType="INTEGER" property="planId" />
+    <result column="num" jdbcType="VARCHAR" property="num" />
+    <result column="receivables_id" jdbcType="INTEGER" property="receivablesId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="money" jdbcType="DECIMAL" property="money" />
+    <result column="return_date" jdbcType="TIMESTAMP" property="returnDate" />
+    <result column="return_type" jdbcType="VARCHAR" property="returnType" />
+    <result column="remind" jdbcType="INTEGER" property="remind" />
+    <result column="remind_date" jdbcType="TIMESTAMP" property="remindDate" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
+    <result column="owner_user_id" jdbcType="BIGINT" property="ownerUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="file_batch" jdbcType="VARCHAR" property="fileBatch" />
+    <result column="contract_id" jdbcType="INTEGER" property="contractId" />
+    <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    plan_id, num, receivables_id, `status`, money, return_date, return_type, remind, 
+    remind_date, remark, create_user_id, owner_user_id, create_time, update_time, file_batch, 
+    contract_id, customer_id
+  </sql>
+  <select id="selectByExample" parameterType="com.sxu.crm.basic.domain.CrmReceivablesPlanExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from crm_receivables_plan
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from crm_receivables_plan
+    where plan_id = #{planId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from crm_receivables_plan
+    where plan_id = #{planId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sxu.crm.basic.domain.CrmReceivablesPlanExample">
+    <!--@mbg.generated-->
+    delete from crm_receivables_plan
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="plan_id" keyProperty="planId" parameterType="com.sxu.crm.basic.domain.CrmReceivablesPlan" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into crm_receivables_plan (num, receivables_id, `status`, 
+      money, return_date, return_type, 
+      remind, remind_date, remark, 
+      create_user_id, owner_user_id, create_time, 
+      update_time, file_batch, contract_id, 
+      customer_id)
+    values (#{num,jdbcType=VARCHAR}, #{receivablesId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{money,jdbcType=DECIMAL}, #{returnDate,jdbcType=TIMESTAMP}, #{returnType,jdbcType=VARCHAR}, 
+      #{remind,jdbcType=INTEGER}, #{remindDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
+      #{createUserId,jdbcType=BIGINT}, #{ownerUserId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{fileBatch,jdbcType=VARCHAR}, #{contractId,jdbcType=INTEGER}, 
+      #{customerId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="plan_id" keyProperty="planId" parameterType="com.sxu.crm.basic.domain.CrmReceivablesPlan" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into crm_receivables_plan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="num != null">
+        num,
+      </if>
+      <if test="receivablesId != null">
+        receivables_id,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="returnDate != null">
+        return_date,
+      </if>
+      <if test="returnType != null">
+        return_type,
+      </if>
+      <if test="remind != null">
+        remind,
+      </if>
+      <if test="remindDate != null">
+        remind_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="ownerUserId != null">
+        owner_user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="fileBatch != null">
+        file_batch,
+      </if>
+      <if test="contractId != null">
+        contract_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="num != null">
+        #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="receivablesId != null">
+        #{receivablesId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="returnDate != null">
+        #{returnDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnType != null">
+        #{returnType,jdbcType=VARCHAR},
+      </if>
+      <if test="remind != null">
+        #{remind,jdbcType=INTEGER},
+      </if>
+      <if test="remindDate != null">
+        #{remindDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="ownerUserId != null">
+        #{ownerUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fileBatch != null">
+        #{fileBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        #{contractId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sxu.crm.basic.domain.CrmReceivablesPlanExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from crm_receivables_plan
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update crm_receivables_plan
+    <set>
+      <if test="record.planId != null">
+        plan_id = #{record.planId,jdbcType=INTEGER},
+      </if>
+      <if test="record.num != null">
+        num = #{record.num,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receivablesId != null">
+        receivables_id = #{record.receivablesId,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null">
+        `status` = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.money != null">
+        money = #{record.money,jdbcType=DECIMAL},
+      </if>
+      <if test="record.returnDate != null">
+        return_date = #{record.returnDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.returnType != null">
+        return_type = #{record.returnType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remind != null">
+        remind = #{record.remind,jdbcType=INTEGER},
+      </if>
+      <if test="record.remindDate != null">
+        remind_date = #{record.remindDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserId != null">
+        create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.ownerUserId != null">
+        owner_user_id = #{record.ownerUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fileBatch != null">
+        file_batch = #{record.fileBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractId != null">
+        contract_id = #{record.contractId,jdbcType=INTEGER},
+      </if>
+      <if test="record.customerId != null">
+        customer_id = #{record.customerId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update crm_receivables_plan
+    set plan_id = #{record.planId,jdbcType=INTEGER},
+      num = #{record.num,jdbcType=VARCHAR},
+      receivables_id = #{record.receivablesId,jdbcType=INTEGER},
+      `status` = #{record.status,jdbcType=INTEGER},
+      money = #{record.money,jdbcType=DECIMAL},
+      return_date = #{record.returnDate,jdbcType=TIMESTAMP},
+      return_type = #{record.returnType,jdbcType=VARCHAR},
+      remind = #{record.remind,jdbcType=INTEGER},
+      remind_date = #{record.remindDate,jdbcType=TIMESTAMP},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      owner_user_id = #{record.ownerUserId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      file_batch = #{record.fileBatch,jdbcType=VARCHAR},
+      contract_id = #{record.contractId,jdbcType=INTEGER},
+      customer_id = #{record.customerId,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sxu.crm.basic.domain.CrmReceivablesPlan">
+    <!--@mbg.generated-->
+    update crm_receivables_plan
+    <set>
+      <if test="num != null">
+        num = #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="receivablesId != null">
+        receivables_id = #{receivablesId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="returnDate != null">
+        return_date = #{returnDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnType != null">
+        return_type = #{returnType,jdbcType=VARCHAR},
+      </if>
+      <if test="remind != null">
+        remind = #{remind,jdbcType=INTEGER},
+      </if>
+      <if test="remindDate != null">
+        remind_date = #{remindDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="ownerUserId != null">
+        owner_user_id = #{ownerUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fileBatch != null">
+        file_batch = #{fileBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null">
+        contract_id = #{contractId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where plan_id = #{planId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sxu.crm.basic.domain.CrmReceivablesPlan">
+    <!--@mbg.generated-->
+    update crm_receivables_plan
+    set num = #{num,jdbcType=VARCHAR},
+      receivables_id = #{receivablesId,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+      money = #{money,jdbcType=DECIMAL},
+      return_date = #{returnDate,jdbcType=TIMESTAMP},
+      return_type = #{returnType,jdbcType=VARCHAR},
+      remind = #{remind,jdbcType=INTEGER},
+      remind_date = #{remindDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      owner_user_id = #{ownerUserId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      file_batch = #{fileBatch,jdbcType=VARCHAR},
+      contract_id = #{contractId,jdbcType=INTEGER},
+      customer_id = #{customerId,jdbcType=INTEGER}
+    where plan_id = #{planId,jdbcType=INTEGER}
+  </update>
+</mapper>
